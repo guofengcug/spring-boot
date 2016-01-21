@@ -6,9 +6,12 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.config.EnableSpringDataWebSupport;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -20,6 +23,7 @@ import com.mm.dev.service.UserService;
  */
 @Controller
 @RequestMapping("/")
+@EnableSpringDataWebSupport
 public class HelloSpringBootController {
 
     private final static Log log = LogFactory.getLog(HelloSpringBootController.class);
@@ -35,16 +39,17 @@ public class HelloSpringBootController {
     	 List<User> userList = userService.getUserList();
     	List<com.mm.dev.entity.entity2.User> userList1 = userService.getUserList1();
     	 
+    	pageable = new PageRequest(1, 10);
         Page<User> all = userService.getAll(pageable);
 
         User user = userService.getUser(1L);
 
         Page<User> allList = userService.getUserAll(pageable);
 
-        System.out.println(all.getTotalPages());
+       /* System.out.println(all.getTotalPages());
         System.out.println(user.getId());
         System.out.println(userList.get(0).getId());
-        System.out.println(allList.getTotalPages());
+        System.out.println(allList.getTotalPages());*/
 
         return "hello SpringBoot! -- userId:";
     }

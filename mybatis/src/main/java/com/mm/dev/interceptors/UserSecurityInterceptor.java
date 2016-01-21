@@ -23,7 +23,7 @@ public class UserSecurityInterceptor implements HandlerInterceptor {
 		System.out.println("preHandle");
 		
 		
-		String token = request.getParameter("access_token");
+		/*String token = request.getParameter("access_token");
 		String appid = request.getParameter("appid");
 		String appsecret = request.getParameter("appsecret");
 		User user = (User) redisObjectTemplate.opsForHash().get(token, "user");
@@ -38,7 +38,8 @@ public class UserSecurityInterceptor implements HandlerInterceptor {
 			return false;
 		} else {
 			return true;
-		}		
+		}		*/
+		return true;
 	}
 
 	@Override

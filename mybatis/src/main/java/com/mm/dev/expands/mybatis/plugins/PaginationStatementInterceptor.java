@@ -36,7 +36,7 @@ public class PaginationStatementInterceptor implements Interceptor {
 
         Pageable pagination = null;
 
-        if(parameterObject instanceof MapperMethod.ParamMap){
+        if(parameterObject instanceof MapperMethod.ParamMap) {
 
             MapperMethod.ParamMap paramMapObject = (MapperMethod.ParamMap)parameterObject ;
 
