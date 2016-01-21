@@ -10,7 +10,7 @@ import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.mm.dev.controller.ResponseError;
-import com.mm.dev.entity.User;
+import com.mm.dev.entity.entity1.User;
 
 @Component
 public class UserSecurityInterceptor implements HandlerInterceptor {

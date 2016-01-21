@@ -1,8 +1,8 @@
 <?xml version="1.0"  encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.mm.dev.dao.mapper.UserMapper">
+<mapper namespace="com.mm.dev.dao.mapper1.UserMapper1">
 
-    <resultMap id="userResultMap" type="com.mm.dev.entity.entity1.User">
+    <resultMap id="userResultMap" type="com.mm.dev.entity.entity2.User">
         <id property="id" jdbcType="BIGINT" javaType="Long" column="id" />
         <result property="username" jdbcType="VARCHAR" javaType="String" column="username" />
         <result property="password" jdbcType="VARCHAR" javaType="String" column="password" />
@@ -12,7 +12,7 @@
         id, username
     </sql>
 
-    <select id="findAll" resultMap="userResultMap">
+    <select id="findAll"  resultMap="userResultMap">
         select
             <include refid="selectClause" />
         from user

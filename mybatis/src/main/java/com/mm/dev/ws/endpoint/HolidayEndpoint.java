@@ -16,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
 import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
 import org.springframework.ws.server.endpoint.annotation.RequestPayload;
+import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 
 import com.mm.dev.ws.service.HumanResourceService;
 /**
@@ -38,6 +39,7 @@ public class HolidayEndpoint {
 	public HolidayEndpoint(HumanResourceService humanResourceService)
 			throws JDOMException, XPathFactoryConfigurationException,
 			XPathExpressionException {
+		
 		this.humanResourceService = humanResourceService;
 
 		Namespace namespace = Namespace.getNamespace("hr", NAMESPACE_URI);
@@ -54,7 +56,8 @@ public class HolidayEndpoint {
 	}
 
 	@PayloadRoot(namespace = NAMESPACE_URI, localPart = "HolidayRequest")
-	public void handleHolidayRequest(@RequestPayload Element holidayRequest)
+	@ResponsePayload
+	public int  handleHolidayRequest(@RequestPayload Element holidayRequest)
 			throws Exception {
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 		Date startDate = dateFormat
@@ -64,6 +67,7 @@ public class HolidayEndpoint {
 		String name = this.nameExpression.evaluateFirst(holidayRequest);
 
 		this.humanResourceService.bookHoliday(startDate, endDate, name);
+		return 1;
 	}
 
 }

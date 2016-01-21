@@ -27,33 +27,32 @@ import java.util.Properties;
  * Created by Lipengfei on 2015/6/26.
  */
 @Configuration
-@MapperScan(basePackages = "com.mm.dev.dao.mapper", sqlSessionFactoryRef = "sqlSessionFactory", sqlSessionTemplateRef = "sqlSessionTemplate")
+@MapperScan(basePackages = "com.mm.dev.dao.mapper1", sqlSessionFactoryRef = "sqlSessionFactory1", sqlSessionTemplateRef = "sqlSessionTemplate1")
 @EnableTransactionManagement
-public class DataSourceConfig {
+public class DataSource1Config {
 
     @Autowired
     private Environment env;
 
     @Bean
-    public DataSource dataSource() {
+    public DataSource dataSource1() {
     	
         DruidDataSource dataSource = new DruidDataSource();
-        dataSource.setDriverClassName(env.getProperty("mysql.driverClassName"));
-        dataSource.setUrl(env.getProperty("mysql.url"));
-        dataSource.setUsername(env.getProperty("mysql.username"));
-        dataSource.setPassword(env.getProperty("mysql.password"));
-        dataSource.setInitialSize(Integer.parseInt(env.getProperty("mysql.initialSize")));
-        dataSource.setMinIdle(Integer.parseInt(env.getProperty("mysql.minIdle")));
-        dataSource.setMaxActive(Integer.parseInt(env.getProperty("mysql.maxActive")));
+        dataSource.setDriverClassName(env.getProperty("jdbc.driverClassName"));
+        dataSource.setUrl(env.getProperty("jdbc.url"));
+        dataSource.setUsername(env.getProperty("jdbc.username"));
+        dataSource.setPassword(env.getProperty("jdbc.password"));
+        dataSource.setInitialSize(Integer.parseInt(env.getProperty("jdbc.initialSize")));
+        dataSource.setMinIdle(Integer.parseInt(env.getProperty("jdbc.minIdle")));
+        dataSource.setMaxActive(Integer.parseInt(env.getProperty("jdbc.maxActive")));
 
         return dataSource;
     }
 
     @Bean
-    public SqlSessionFactory sqlSessionFactory(DataSource dataSource) throws Exception {
+    public SqlSessionFactory sqlSessionFactory1(DataSource dataSource1) throws Exception {
 
-        SqlSessionFactoryBean sessionFactory = new SqlSessionFactoryBean();
-
+        SqlSessionFactoryBean sessionFactory1 = new SqlSessionFactoryBean();
         // 获取properties中的对应配置信息
         String mapperPackage = env.getProperty("spring.mybatis.mapperPackage");
         String dialect = env.getProperty("spring.mybatis.dialect");
@@ -61,45 +60,44 @@ public class DataSourceConfig {
         Properties properties = new Properties();
         properties.setProperty("dialect", dialect);
 
-        sessionFactory.setDataSource(dataSource);
-        sessionFactory.setConfigurationProperties(properties);
+        sessionFactory1.setDataSource(dataSource1);
+        sessionFactory1.setConfigurationProperties(properties);
         // 设置MapperLocations路径
-        if(!StringUtils.isEmpty(mapperPackage)){
+        if(!StringUtils.isEmpty(mapperPackage)) {
             ResourcePatternResolver resourcePatternResolver = new PathMatchingResourcePatternResolver();
-            sessionFactory.setMapperLocations(resourcePatternResolver.getResources(mapperPackage));
+            sessionFactory1.setMapperLocations(resourcePatternResolver.getResources(mapperPackage));
         }
         // 设置插件
-        sessionFactory.setPlugins(new Interceptor[]{
+        sessionFactory1.setPlugins(new Interceptor[] {
                 new PaginationStatementInterceptor(),
                 new PaginationResultSetInterceptor()
         });
-
-        return sessionFactory.getObject();
+        return sessionFactory1.getObject();
     }
 
     @Bean
-    public SqlSessionTemplate sqlSessionTemplate(SqlSessionFactory sqlSessionFactory){
-        return new SqlSessionTemplate(sqlSessionFactory);
+    public SqlSessionTemplate sqlSessionTemplate1(SqlSessionFactory sqlSessionFactory1) {
+        return new SqlSessionTemplate(sqlSessionFactory1);
     }
 
     @Bean
-    public LocalContainerEntityManagerFactoryBean entityManagerFactory(EntityManagerFactoryBuilder builder, DataSource dataSource) {
+    public LocalContainerEntityManagerFactoryBean entityManagerFactory(EntityManagerFactoryBuilder builder, DataSource dataSource1) {
 
-        LocalContainerEntityManagerFactoryBean entityManagerFactory = builder.dataSource(dataSource).build();
+        LocalContainerEntityManagerFactoryBean entityManagerFactory1 = builder.dataSource(dataSource1).build();
 
         Properties properties = new Properties();
         properties.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQL5Dialect");
         properties.setProperty("hibernate.hbm2ddl.auto", "update");
 
-        entityManagerFactory.setPackagesToScan("com.mm.dev.entity.entity1");
-        entityManagerFactory.setJpaProperties(properties);
+        entityManagerFactory1.setPackagesToScan("com.mm.dev.entity.entity2");
+        entityManagerFactory1.setJpaProperties(properties);
 
-        return entityManagerFactory;
+        return entityManagerFactory1;
     }
 
     @Bean
-    public DataSourceTransactionManager transactionManager(DataSource dataSource){
-        return new DataSourceTransactionManager(dataSource);
+    public DataSourceTransactionManager transactionManager(DataSource dataSource1) {
+        return new DataSourceTransactionManager(dataSource1);
     }
 
 }

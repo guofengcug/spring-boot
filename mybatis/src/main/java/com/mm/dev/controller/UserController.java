@@ -25,8 +25,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.mm.dev.entity.User;
-import com.mm.dev.entity.UserCreateForm;
+import com.mm.dev.entity.entity1.User;
+import com.mm.dev.entity.entity1.UserCreateForm;
 import com.wordnik.swagger.annotations.Api;
 import com.wordnik.swagger.annotations.ApiOperation;
 

@@ -1,7 +1,7 @@
 package com.mm.dev.controller;
 
-import com.mm.dev.entity.User;
-import com.mm.dev.service.UserService;
+import java.util.List;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +12,8 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.List;
+import com.mm.dev.entity.entity1.User;
+import com.mm.dev.service.UserService;
 
 /**
  * Created by Lipengfei on 2015/6/24.
@@ -31,13 +32,13 @@ public class HelloSpringBootController {
     @ResponseBody
     public String sayHello(Pageable pageable) {
 
+    	 List<User> userList = userService.getUserList();
+    	List<com.mm.dev.entity.entity2.User> userList1 = userService.getUserList1();
+    	 
         Page<User> all = userService.getAll(pageable);
 
         User user = userService.getUser(1L);
 
-        List<User> userList = userService.getUserList();
-
-   
         Page<User> allList = userService.getUserAll(pageable);
 
         System.out.println(all.getTotalPages());

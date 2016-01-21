@@ -1,10 +1,11 @@
 package com.mm.dev.service;
 
-import com.mm.dev.entity.User;
+import java.util.List;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
-import java.util.List;
+import com.mm.dev.entity.entity1.User;
 
 /**
  * Created by Lipengfei on 2015/6/26.
@@ -22,5 +23,7 @@ public interface UserService {
     void save();
 
     void saveUser();
+    
+    List<com.mm.dev.entity.entity2.User> getUserList1();
 
 }

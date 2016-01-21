@@ -43,6 +43,6 @@ public class DevApplication extends WebMvcConfigurerAdapter {
         	excludePathPatterns("/mq/**").
         	excludePathPatterns("/mongo/**").
         	excludePathPatterns("/favicon.ico");  
-    } 
+    }
 
 }

@@ -1,16 +1,18 @@
 package com.mm.dev.service.impl;
 
-import com.mm.dev.dao.jpa.UserDao;
-import com.mm.dev.dao.mapper.UserMapper;
-import com.mm.dev.entity.User;
-import com.mm.dev.service.UserService;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
+import com.mm.dev.dao.jpa.UserDao;
+import com.mm.dev.dao.mapper.UserMapper;
+import com.mm.dev.dao.mapper1.UserMapper1;
+import com.mm.dev.entity.entity1.User;
+import com.mm.dev.service.UserService;
 
 /**
  * Created by Lipengfei on 2015/6/26.
@@ -23,6 +25,9 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserMapper userMapper;
+    
+    @Autowired
+    private UserMapper1 userMapper1;
 
     @Override
     public User getUser(Long id) {
@@ -68,5 +73,10 @@ public class UserServiceImpl implements UserService {
 
         throw new RuntimeException("保存异常！");
     }
+
+	@Override
+	public List<com.mm.dev.entity.entity2.User> getUserList1() {
+		return userMapper1.findAll();
+	}
 
 }
