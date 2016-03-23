@@ -37,12 +37,9 @@ public class PaginationStatementInterceptor implements Interceptor {
         Pageable pagination = null;
 
         if(parameterObject instanceof MapperMethod.ParamMap) {
-
             MapperMethod.ParamMap paramMapObject = (MapperMethod.ParamMap)parameterObject ;
-
-
-            if(paramMapObject != null){
-                for(Object key : paramMapObject.keySet()){
+            if(paramMapObject != null) {
+                for(Object key : paramMapObject.keySet()) {
                     if(paramMapObject.get(key) instanceof  Pageable){
                         pagination = (Pageable) paramMapObject.get(key);
                         break;
@@ -97,6 +94,7 @@ public class PaginationStatementInterceptor implements Interceptor {
 
     @Override
     public void setProperties(Properties properties) {
+    	
     }
 
 }

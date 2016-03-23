@@ -23,6 +23,10 @@
             <include refid="selectClause" />
         from user
     </select>
+    
+   <select id="findPage" resultType="com.mm.dev.entity.entity1.User">
+       select * from user
+   </select>
 
     <insert id="save">
         INSERT INTO user (username, password) VALUES (#{username}, #{password})

@@ -36,7 +36,7 @@ public class HelloSpringBootController {
     @ResponseBody
     public String sayHello(Pageable pageable) {
 
-    	 List<User> userList = userService.getUserList();
+    	List<User> userList = userService.getUserList();
     	List<com.mm.dev.entity.entity2.User> userList1 = userService.getUserList1();
     	 
     	pageable = new PageRequest(1, 10);
