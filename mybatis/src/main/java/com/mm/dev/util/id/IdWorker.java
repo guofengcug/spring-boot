@@ -75,9 +75,13 @@ public class IdWorker {
     }
  
  
-    public static void main(String[] args){
-        IdWorker worker2 = new IdWorker(2);
-        System.out.println(worker2.nextId());
+    public static void main(String[] args) {
+    	
+    	for (int i = 0; i < 100; i++) {
+    		 IdWorker worker2 = new IdWorker(2);
+    	     System.out.println(worker2.nextId());
+		}
+       
     }
 
 }
